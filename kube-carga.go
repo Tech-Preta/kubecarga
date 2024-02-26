@@ -24,6 +24,11 @@ func main() {
 	flag.StringVar(&kubeconfig, "kubeconfig", "", "path to kubeconfig file")
 	flag.Parse()
 
+	// Check if kubeconfig path is provided, otherwise use KUBECONFIG environment variable
+	if kubeconfig == "" {
+		kubeconfig = os.Getenv("KUBECONFIG")
+	}
+
 	// Use the in-cluster config if kubeconfig path is not provided
 	var config *rest.Config
 	var err error
@@ -94,6 +99,8 @@ func main() {
 				} else {
 					log.Printf("Deployment %s created successfully\n", deployment.Name)
 				}
+			case <-ctx.Done():
+				return
 			}
 		}
 	}()

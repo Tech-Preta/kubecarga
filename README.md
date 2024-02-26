@@ -12,6 +12,16 @@ Este é um exemplo de teste de carga em Go para clusters Kubernetes. O teste cri
 
 O código cria deployments no cluster Kubernetes em intervalos regulares. No exemplo fornecido, ele cria deployments usando a imagem `nginx`, mas pode ser adaptado para outras imagens e tipos de recursos do Kubernetes.
 
+## Instalação das dependências
+
+Para instalar as dependências necessárias, execute os seguintes comandos:
+
+```bash
+go get k8s.io/client-go/kubernetes
+go get k8s.io/client-go/rest
+go get k8s.io/client-go/tools/clientcmd
+```
+
 ## Como executar
 
 1. Clone este repositório:
@@ -19,3 +29,4 @@ O código cria deployments no cluster Kubernetes em intervalos regulares. No exe
 ```bash
 git clone https://github.com/Tech-Preta/k8s-test.git
 cd k8s-test
+```
