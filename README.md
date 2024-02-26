@@ -21,8 +21,8 @@ O código cria deployments no cluster Kubernetes em intervalos regulares. No exe
 ### Clone este repositório
 
 ```bash
-git clone https://github.com/Tech-Preta/k8s-test.git
-cd k8s-test
+git clone https://github.com/Tech-Preta/kubecarga.git
+cd kubecarga
 ```
 
 ### Inicialize o módulo Go
