@@ -21,4 +21,9 @@ jobs:
         run: go version
       - name: Run go mod tidy
         run: go mod tidy  
-
+      - name: Install dependencies
+        run: go get k8s.io/client-go/kubernetes
+      - name: Install dependencies  
+        run:  go get k8s.io/client-go/rest
+      - name: Install dependencies  
+        run:  go get k8s.io/client-go/tools/clientcmd
