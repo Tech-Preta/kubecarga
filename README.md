@@ -87,6 +87,6 @@ Adicionar uma funcionalidade para verificar quanto tempo cada deployment demora 
 - [ ] Registrar o tempo de conclusão da criação de cada deployment.
 - [ ] Calcular e registrar a diferença de tempo entre o início e a conclusão da implantação de cada deployment.
 
-### Contato
+## Contato
 - contato@nataliagranato.xyz
 
