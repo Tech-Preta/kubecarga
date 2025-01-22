@@ -14,7 +14,7 @@ RUN go mod download
 COPY . .
 
 # Compile o binário
-RUN go build -o kubecarga .
+RUN go build -o kube-carga .
 
 # Use uma imagem base mínima para o contêiner final
 FROM alpine:3.16
@@ -23,13 +23,13 @@ FROM alpine:3.16
 WORKDIR /app
 
 # Copie o binário do estágio de construção
-COPY --from=builder /app/kubecarga .
+COPY --from=builder /app/kube-carga .
 
 # Copie o arquivo de configuração, se necessário
 # COPY config.yaml /app/config.yaml
 
 # Defina o comando de entrada
-ENTRYPOINT ["./kubecarga"]
+ENTRYPOINT ["./kube-carga"]
 
 # Exemplo de como passar o arquivo de configuração como argumento
 # CMD ["-kubeconfig", "/caminho/para/seu/kubeconfig"]
