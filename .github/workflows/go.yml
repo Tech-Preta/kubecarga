@@ -28,4 +28,4 @@ jobs:
       - name: Install dependencies  
         run:  go get k8s.io/client-go/tools/clientcmd
       - name: Build
-        run: go build -o kube-carga .  
+        run: go build -o kubecarga .  

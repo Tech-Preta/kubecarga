@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: release
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - name: checkout the code
+        uses: actions/checkout@v3
+
+      - name: setup go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.x'
+
+      - name: unshallow
+        run: git fetch --prune --unshallow
+
+      - name: run goreleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

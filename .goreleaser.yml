@@ -1,0 +1,64 @@
+project_name: kubecarga
+builds:
+  - main: .
+    binary: kubecarga
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=0
+archives:
+  - format: tar.gz
+    files:
+      - kubecarga
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+
+changelog:
+  use: git
+
+release:
+  github:
+    owner: Tech-Preta
+    name: kubecarga
+    draft: true
+    prerelease: false
+
+brews:
+  - name: kubecarga
+    repo:
+      owner: Tech-Preta
+      name: homebrew-tap
+    homepage: "https://github.com/Tech-Preta/kubecarga"
+    description: "Este é um exemplo de teste de carga em Go para clusters Kubernetes."
+
+dockers:
+  - goos: linux
+    goarch: amd64
+    image_templates:
+      - "techpreta/kubecarga:{{ .Version }}"
+    files:
+      - kubecarga
+    Dockerfile: Dockerfile
+
+nfpms:
+  - package: deb
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    maintainer: "Tech-Preta <contato@nataliagranato.xyz>"
+    description: "Este é um exemplo de teste de carga em Go para clusters Kubernetes."
+    license: MIT
+    binds:
+      - "/etc/kubecarga:/etc/kubecarga"
+    depends:
+      - "bash"
+    recommends:
+      - "kubelet"
+    replaces:
+      - "old-kubecarga"
+    conflicts:
+      - "other-kubecarga"
+    config_files:
+      - "/etc/kubecarga/config.yaml"
+    contents:
+      - src: ./kubecarga
+        dst: /usr/local/bin/kubecarga
