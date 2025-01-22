@@ -14,13 +14,13 @@ GO_MOD = go.mod
 all: build
 
 build: $(GO_FILES) $(GO_MOD)
-    @echo ">> Building the binary..."
-    @go build -o $(BINARY) $(SRC_DIR)
+	@echo ">> Building the binary..."
+	@go build -o $(BINARY) $(SRC_DIR)
 
 clean:
-    @echo ">> Cleaning the binary..."
-    @rm -f $(BINARY)
+	@echo ">> Cleaning the binary..."
+	@rm -f $(BINARY)
 
 run: build
-    @echo ">> Running the application..."
-    @./$(BINARY) -kubeconfig ~/.kube/config
+	@echo ">> Running the application..."
+	@./$(BINARY) -kubeconfig ~/.kube/config

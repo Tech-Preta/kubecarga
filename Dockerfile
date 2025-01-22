@@ -11,8 +11,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Copie apenas os arquivos de código-fonte necessários
-COPY main.go ./
-COPY src/ ./src/
+COPY kubecarga.go ./
 
 # Compile o binário
 RUN go build -o kube-carga .
