@@ -1,7 +1,6 @@
 name: Creating a release
 
 on:
-  pull_request:
   push:
     # run only against tags
     tags:
