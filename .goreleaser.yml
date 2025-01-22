@@ -21,7 +21,8 @@ archives:
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 
 dockers:
-  - image: nataliagranato/kubecarga:latest
+  - images:
+      - nataliagranato/kubecarga:latest
     dockerfile: Dockerfile
 
 nfpms:
@@ -30,6 +31,6 @@ nfpms:
       - rpm
     dependencies:
       - bash
-    config_files:
+    contents:
       - src: ./config.yaml
         dst: /etc/kubecarga/config.yaml
