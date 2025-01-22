@@ -5,30 +5,33 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  # packages: write
+  # issues: write
+  # id-token: write
+
 jobs:
-  release:
-    name: release
+  goreleaser:
     runs-on: ubuntu-latest
-
     steps:
-      - name: checkout the code
-        uses: actions/checkout@v3
-
-      - name: setup go
-        uses: actions/setup-go@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          go-version: "1.21.x"
-
-      - name: unshallow
-        run: git fetch --prune --unshallow
-
-      - name: clean artifacts
-        run: rm -rf dist
-
-      - name: run goreleaser
-        uses: goreleaser/goreleaser-action@v5
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          version: v1.10.3 # Especifique uma versão estável
-          args: release
+          go-version: stable
+      # More assembly might be required: Docker logins, GPG, etc.
+      # It all depends on your needs.
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          # either 'goreleaser' (default) or 'goreleaser-pro'
+          distribution: goreleaser
+          # 'latest', 'nightly', or a semver
+          version: "~> v2"
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
