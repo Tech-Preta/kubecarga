@@ -1,9 +1,11 @@
 name: Creating a release
 
 on:
+  pull_request:
   push:
-    branches:
-      - main
+    # run only against tags
+    tags:
+      - "*"
 
 permissions:
   contents: write
