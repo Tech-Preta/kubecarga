@@ -1,5 +1,5 @@
 # Nome do binário
-BINARY = kubecarga
+BINARY = kube-carga
 
 # Diretório de origem
 SRC_DIR = .
