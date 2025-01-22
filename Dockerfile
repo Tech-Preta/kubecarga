@@ -10,8 +10,9 @@ COPY go.mod go.sum ./
 # Baixe as dependências
 RUN go mod download
 
-# Copie o código-fonte para o diretório de trabalho
-COPY . .
+# Copie apenas os arquivos de código-fonte necessários
+COPY main.go ./
+COPY src/ ./src/
 
 # Compile o binário
 RUN go build -o kube-carga .
@@ -22,14 +23,17 @@ FROM alpine:3.16
 # Crie um diretório para a aplicação
 WORKDIR /app
 
+# Adicione um usuário não-root
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 # Copie o binário do estágio de construção
 COPY --from=builder /app/kube-carga .
 
-# Copie o arquivo de configuração, se necessário
-# COPY config.yaml /app/config.yaml
+# Altere a propriedade dos arquivos para o usuário não-root
+RUN chown -R appuser:appgroup /app
 
-# Defina o comando de entrada
+# Troque para o usuário não-root
+USER appuser
+
+# Defina o ponto de entrada do contêiner
 ENTRYPOINT ["./kube-carga"]
-
-# Exemplo de como passar o arquivo de configuração como argumento
-# CMD ["-kubeconfig", "/caminho/para/seu/kubeconfig"]
