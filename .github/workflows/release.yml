@@ -1,9 +1,9 @@
-name: Release
+name: Creating a release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 
 jobs:
   release:
@@ -17,7 +17,7 @@ jobs:
       - name: setup go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.21.x'
+          go-version: "1.21.x"
 
       - name: unshallow
         run: git fetch --prune --unshallow
