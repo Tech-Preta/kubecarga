@@ -1,11 +1,12 @@
 module kube-carga.go
 
-go 1.21
+go 1.24.0
+
 toolchain go1.24.1
 
 require (
-	k8s.io/api v0.33.0
-	k8s.io/apimachinery v0.33.0
+	k8s.io/api v0.33.1
+	k8s.io/apimachinery v0.33.1
 	k8s.io/client-go v0.33.0
 )
 
