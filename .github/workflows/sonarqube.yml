@@ -18,5 +18,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Não troque por USER_TOKEN
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: . # Ajuste para ./kubecarga se o código estiver em uma subpasta
