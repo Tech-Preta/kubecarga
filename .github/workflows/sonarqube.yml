@@ -1,12 +1,15 @@
 name: SonarCloud Analysis
+
 permissions:
   contents: read
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -18,7 +21,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Não troque por USER_TOKEN
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          projectBaseDir: . # Ajuste para ./kubecarga se o código estiver em uma subpasta
+          projectBaseDir: ./kubecarga
